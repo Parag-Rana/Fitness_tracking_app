@@ -1,0 +1,38 @@
+#Script for 20 reps in 1 Set and Max 5 set
+
+import unittest
+from appium import webdriver
+from time import sleep
+
+class TestWorkoutLogging(unittest.TestCase):
+
+    def setUp(self):
+        desired_caps = {
+            "platformName": "iOS",
+            "platformVersion": "16.2",
+            "deviceName": "iPhone 12",
+            "app": "path/to/your/app",
+            "automationName": "XCUITest"
+        }
+        self.driver = webdriver.Remote(server_url, desired_caps)
+        self.driver.implicitly_wait(10)
+
+    def test_log_workout(self):
+        for i in range(5): # maximum 5 sets
+            add_set_btn = self.driver.find_element_by_accessibility_id("add_set_button")
+            add_set_btn.click()
+            for j in range(20): # 20 reps per set
+                add_rep_btn = self.driver.find_element_by_accessibility_id("add_rep_button")
+                add_rep_btn.click()
+        save_btn = self.driver.find_element_by_accessibility_id("save_button")
+        save_btn.click()
+        sleep(2)
+        assert "Workout saved!" in self.driver.page_source
+
+    def tearDown(self):
+        self.driver.quit()
+
+if __name__ == '__main__':
+    server_url = "http://localhost:4723/wd/hub"
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestWorkoutLogging)
+    unittest.TextTestRunner(verbosity=2).run(suite)
