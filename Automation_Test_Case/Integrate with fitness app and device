@@ -1,0 +1,75 @@
+#Here Strava and Boat smartwatch
+
+import pytest
+from appium import webdriver
+import time
+
+class TestFitnessIntegration:
+    
+    @pytest.fixture(autouse=True)
+    def set_up(self):
+        # Desired capabilities for iPhone 12 running iOS 16.2
+        desired_caps = {
+            "platformName": "iOS",
+            "platformVersion": "16.2",
+            "deviceName": "iPhone 12",
+            "automationName": "Appium",
+            "app": "path/to/ios/app"
+        }
+        
+        # Connect to Appium server
+        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        
+        # Wait for app to load
+        time.sleep(5)
+        
+        yield
+        
+        # Close app
+        self.driver.quit()
+    
+    def test_strava_integration(self):
+        # Navigate to settings page
+        settings_button = self.driver.find_element_by_accessibility_id("settings")
+        settings_button.click()
+        
+        # Navigate to Strava integration page
+        strava_button = self.driver.find_element_by_accessibility_id("strava")
+        strava_button.click()
+        
+        # Enter Strava login credentials
+        email_field = self.driver.find_element_by_accessibility_id("strava-email")
+        email_field.send_keys("example@strava.com")
+        password_field = self.driver.find_element_by_accessibility_id("strava-password")
+        password_field.send_keys("password123")
+        
+        # Submit login form
+        login_button = self.driver.find_element_by_accessibility_id("strava-login")
+        login_button.click()
+        
+        # Wait for Strava integration to complete
+        time.sleep(5)
+        
+        # Verify that Strava integration is enabled
+        strava_status = self.driver.find_element_by_accessibility_id("strava-status")
+        assert strava_status.text == "Enabled"
+    
+    def test_boat_integration(self):
+        # Navigate to settings page
+        settings_button = self.driver.find_element_by_accessibility_id("settings")
+        settings_button.click()
+        
+        # Navigate to Boat smartwatch integration page
+        boat_button = self.driver.find_element_by_accessibility_id("boat-watch")
+        boat_button.click()
+        
+        # Connect to Boat smartwatch
+        connect_button = self.driver.find_element_by_accessibility_id("boat-connect")
+        connect_button.click()
+        
+        # Wait for Boat smartwatch integration to complete
+        time.sleep(5)
+        
+        # Verify that Boat smartwatch is connected
+        boat_status = self.driver.find_element_by_accessibility_id("boat-status")
+        assert boat_status.text == "Connected"
