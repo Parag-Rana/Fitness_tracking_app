@@ -1,0 +1,174 @@
+## I. Introduction
+This test plan provides a comprehensive approach for testing the Fitbit app for iOS devices. The testing will cover functional testing, usability testing, and performance testing. This test plan aims to ensure the quality and reliability of the app and to enhance the user experience.
+
+## II. Objectives
+The objectives of this test plan are:
+- To verify the functionality of the Fitbit app.
+- To evaluate the usability of the Fitbit app.
+- To test the performance of the Fitbit app under different scenarios.
+- To identify defects and issues in the Fitbit app.
+
+## III. Scope
+The scope of this test plan includes the following areas of testing:
+- Functional Testing:
+  - User account registration and login.
+  - Tracking and logging of fitness activities.
+  - Integration with fitness devices and apps.
+  - Sharing and social media features.
+  - Library of exercises and workout plans.
+- Usability Testing:
+  - Navigation and user interface design.
+  - Ease of use and user experience.
+  - User engagement and motivation.
+- Performance Testing:
+  - App response time under different network conditions.
+  - App stability under load.
+  - Battery usage and efficiency.
+
+## IV. Test Environment
+The testing will be conducted on the following environment:
+- Device: iPhone 12
+- OS: iOS 16.2
+- Appium version: 1.21.0
+- Python version: 3.8.5
+- Testing framework: pytest
+
+## V. Test Cases
+==================== A. Functional Testing ===================
+#### 1. User account registration and login
+1. Verify that a new user can register an account.
+2. Verify that an existing user can log in to their account.
+3. Verify that the app displays appropriate error messages for invalid login credentials.
+4. Verify that the app allows users to reset their passwords.
+
+#### 2. Tracking and logging of fitness activities
+1. Verify that users can track and log fitness activities.
+2. Verify that users can edit and delete logged activities.
+3. Verify that the app displays relevant information such as calories burned and distance traveled.
+4. Verify that the app provides insights and analysis of user fitness activities.
+
+#### 3. Integration with fitness devices and apps
+1. Verify that the app integrates with Strava and Boat smartwatch.
+2. Verify that users can sync their fitness data from other apps and devices to the Fitbit app.
+3. Verify that the app displays accurate data from connected fitness devices.
+
+#### 4. Sharing and social media features
+1. Verify that users can share their fitness activities and achievements to social media.
+2. Verify that the app provides options for sharing to different social media platforms.
+3. Verify that the app displays appropriate error messages for failed social media sharing.
+
+#### 5. Library of exercises and workout plans
+1. Verify that the app provides a comprehensive library of exercises and workout plans.
+2. Verify that users can filter and search for specific exercises and workout plans.
+3. Verify that the app provides instructional videos and images for each exercise.
+
+==================== B. Usability Testing ===================
+1. Objective:
+   The objective of the usability testing is to evaluate the user interface and overall user experience of the Fitbit app to ensure that it is easy to use, efficient, and meets the needs of the users.
+
+2. Test Scenarios:
+   a. User Registration: Test the ease of user registration process and ensure that it's straightforward and understandable.
+   b. Navigation: Test how easy it is to navigate through different sections of the app and whether the navigation is intuitive.
+   c. User Profile: Test the ease of creating and updating user profile and how user-friendly it is.
+   d. Dashboard: Test how the data is displayed on the dashboard and whether the interface is clean, clear and understandable.
+   e. Activity Tracking: Test the ease of tracking activities, adding logs, and checking progress.
+   f. Notifications: Test how notifications are displayed and how user-friendly the notification system is.
+   g. Settings: Test how easy it is to find settings, change preferences, and manage the app.
+
+3. Test Methods:
+   a. Think-Aloud Testing: Users will be asked to perform tasks while thinking aloud, which will help to identify areas of confusion and difficulty in the app.
+   b. User Observation: Users will be observed while performing tasks, and the usability testing team will note any areas of difficulty and frustration.
+   c. Surveys: Users will be asked to complete a survey after using the app to gather feedback on their overall experience.
+
+4. Metrics:
+   a. Task Success Rate: The percentage of tasks successfully completed by the user.
+   b. Time-on-Task: The time taken by the user to complete each task.
+   c. Error Rate: The number of errors made by the user while completing each task.
+   d. User Satisfaction: A subjective measure of user satisfaction with the app's usability.
+
+5. Test Environment:
+   The testing environment will include iOS devices, including the iPhone 12 running iOS 16.2. Appium will be used as the testing framework, and the tests will be conducted in a controlled environment.
+
+6. Test Schedule:
+   The usability testing will be conducted in multiple phases over a period of 2-3 weeks to gather comprehensive feedback from the users. The testing schedule will be as follows:
+   a. Test Planning and Preparation: 1-2 days
+   b. User Recruitment and Scheduling: 2-3 days
+   c. Usability Testing: 7-10 days
+   d. Data Analysis and Reporting: 2-3 days
+
+7. Test Deliverables:
+   The following deliverables will be produced after the usability testing:
+   a. Usability Testing Plan
+   b. Test Scenarios
+   c. Test Metrics
+   d. Test Results
+   e. Recommendations for Improvements
+   
+   
+======================== C Performance Testing ====================
+
+1. Test Objective:
+   - To verify that the Fitbit app performs optimally under different scenarios, including high traffic, low network connectivity, and memory limitations.
+
+2. Test Scope:
+   - Performance testing will be conducted on the following areas of the Fitbit app:
+     - Launch time
+     - Navigation between screens
+     - Loading of data from server
+     - Search functionality
+     - Integration with fitness devices
+     - Syncing of data between the app and server
+
+3. Test Environment:
+   - Hardware: iOS devices (iPhone and iPad)
+   - Operating System: iOS 16.2 or later
+   - Network: Wi-Fi and cellular data
+   - Tools: Appium, Python
+
+4. Performance Test Cases:
+   1. Launch Time:
+      - Test case 1: Verify the launch time of the app on different iOS devices
+      - Test case 2: Verify the launch time of the app under different network conditions (Wi-Fi and cellular data)
+
+   2. Navigation between screens:
+      - Test case 3: Verify the response time of the app when navigating between different screens
+      - Test case 4: Verify the response time of the app when navigating between different screens under low network connectivity
+
+   3. Loading of data from server:
+      - Test case 5: Verify the response time of the app when loading data from the server (e.g., exercise plans, nutrition information)
+      - Test case 6: Verify the response time of the app when loading data from the server under high traffic
+
+   4. Search functionality:
+      - Test case 7: Verify the response time of the app when searching for different exercises and nutrition information
+      - Test case 8: Verify the response time of the app when searching for different exercises and nutrition information under low network connectivity
+
+   5. Integration with fitness devices:
+      - Test case 9: Verify the response time of the app when syncing data with fitness devices such as Strava and Boat smartwatch
+      - Test case 10: Verify the response time of the app when syncing data with fitness devices under low network connectivity
+
+   6. Syncing of data between the app and server:
+      - Test case 11: Verify the response time of the app when syncing data between the app and server (e.g., weight, steps, calories burned)
+      - Test case 12: Verify the response time of the app when syncing data between the app and server under high traffic
+
+5. Test Execution:
+   - The performance tests will be executed using Appium Python automation scripts.
+   - The tests will be executed on different iOS devices and under different network conditions.
+   - The results will be recorded for analysis.
+
+6. Test Deliverables:
+   - Performance test plan document
+   - Test execution report with performance metrics and graphs
+   - Recommendations for improving the performance of the Fitbit app
+
+7. Test Completion Criteria:
+   - All test cases have been executed successfully.
+   - The app meets the performance requirements defined in the test plan.
+   - No major performance issues have been identified that impact the user experience.
+
+8. Risks and Mitigation Strategies:
+   - Risk 1: High network traffic can cause slow response times
+     - Mitigation Strategy: Test the app under different network conditions and optimize the code for efficient data loading.
+   - Risk 2: Memory limitations can cause the app to crash
+     - Mitigation Strategy: Test the app under different memory limitations and optimize the code for efficient memory usage.
+   - Risk 3: Integration with third-party fitness devices may not work as expected
+     - Mitigation
