@@ -1,0 +1,43 @@
+#This is a python script for automation testing using appium
+# Import the required packages
+import pytest
+from appium import webdriver
+from appium.webdriver.common.touch_action import TouchAction
+import time
+
+# Set the desired capabilities for iPhone 12
+desired_caps = {}
+desired_caps['platformName'] = 'iOS'
+desired_caps['platformVersion'] = '16.2'
+desired_caps['deviceName'] = 'iPhone 12'
+desired_caps['app'] = '/path/to/your/Fitbit.app'
+
+# Set up the Appium server URL
+server_url = 'http://127.0.0.1:4723/wd/hub'
+
+# Initialize the driver
+driver = webdriver.Remote(server_url, desired_caps)
+
+# Define the workout logging test case
+@pytest.mark.workout
+def test_workout_logging():
+    # Navigate to the workout log screen
+    workout_button = driver.find_element_by_accessibility_id("nav_home")
+    workout_button.click()
+    driver.find_element_by_accessibility_id("workout_tile").click()
+    # Select a workout activity
+    driver.find_element_by_accessibility_id("workout_activity").click()
+    driver.find_element_by_accessibility_id("Weightlifting").click()  # Select a workout activity
+    # Log the workout details
+    driver.find_element_by_accessibility_id("log_workout_sets_reps").click()
+    driver.find_element_by_accessibility_id("add_set_button").click()
+    driver.find_element_by_accessibility_id("add_rep_button").click()
+    driver.find_element_by_accessibility_id("done_button").click()
+    # Verify that the workout is logged
+    assert driver.find_element_by_accessibility_id("calories_burned").is_displayed()
+
+# Run the test case
+test_workout_logging()
+
+# Quit the driver
+driver.quit()
