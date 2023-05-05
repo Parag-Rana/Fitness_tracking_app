@@ -1,0 +1,43 @@
+import pytest
+from appium import webdriver
+from time import sleep
+
+@pytest.fixture(scope="module")
+def driver():
+    caps = {
+        "deviceName": "iPhone 12",
+        "platformName": "iOS",
+        "platformVersion": "16.2",
+        "app": "path/to/fitbit/app",
+        "automationName": "XCUITest",
+        "udid": "device-udid",
+        "noReset": True,
+    }
+
+    driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+    yield driver
+    driver.quit()
+
+@pytest.mark.parametrize("social_media", ["facebook", "twitter", "instagram"])
+def test_share_progress_and_achievements(driver, social_media):
+    # Login to the app
+
+    # Navigate to the progress screen
+
+    # Click on the share button
+    share_button = driver.find_element_by_id("share_button")
+    share_button.click()
+
+    # Select social media platform
+    if social_media == "facebook":
+        facebook_button = driver.find_element_by_id("facebook_button")
+        facebook_button.click()
+    elif social_media == "twitter":
+        twitter_button = driver.find_element_by_id("twitter_button")
+        twitter_button.click()
+    elif social_media == "instagram":
+        instagram_button = driver.find_element_by_id("instagram_button")
+        instagram_button.click()
+
+    # Check if the share screen is opened for the selected social media platform
+    assert "Share on {}".format(social_media.capitalize()) in driver.page_source
