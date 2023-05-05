@@ -1,0 +1,41 @@
+# Track weight 70 after the period of 3 weeks using python
+
+import time
+from datetime import datetime, timedelta
+from appium import webdriver
+
+# Connect to the Appium server
+desired_caps = {
+    "platformName": "iOS",
+    "platformVersion": "16.2",
+    "deviceName": "iPhone 12",
+    "app": "/path/to/fitbit.app"
+}
+
+server_url = "http://localhost:4723/wd/hub"
+driver = webdriver.Remote(server_url, desired_caps)
+
+# Set initial weight and date
+initial_weight = 70
+initial_date = datetime(2023, 5, 5)
+
+# Navigate to the "Track Progress" section
+track_progress_button = driver.find_element_by_accessibility_id("track-progress")
+track_progress_button.click()
+
+# Wait for the "Track Progress" page to load
+time.sleep(5)
+
+# Check the initial weight
+weight_element = driver.find_element_by_accessibility_id("weight")
+weight = float(weight_element.text.split()[0])
+assert weight == initial_weight, f"Initial weight not set correctly, expected {initial_weight}, got {weight}"
+
+# Check the weight after 3 weeks
+three_weeks_later = initial_date + timedelta(weeks=3)
+weight_element = driver.find_element_by_accessibility_id("weight")
+weight = float(weight_element.text.split()[0])
+assert weight == initial_weight, f"Weight after 3 weeks not correct, expected {initial_weight}, got {weight}"
+
+# Close the app
+driver.quit()
