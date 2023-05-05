@@ -1,0 +1,47 @@
+import pytest
+from appium import webdriver
+from time import sleep
+
+class TestFitbitConnectFriends:
+    
+    @pytest.fixture()
+    def appium_driver(self, request):
+        desired_caps = {
+            "platformName": "iOS",
+            "platformVersion": "16.2",
+            "deviceName": "iPhone 12",
+            "app": "/path/to/your/app"
+        }
+        
+        server_url = 'http://localhost:4723/wd/hub'
+        driver = webdriver.Remote(server_url, desired_caps)
+        
+        def fin():
+            driver.quit()
+            
+        request.addfinalizer(fin)
+        return driver
+    
+    def test_connect_friends(self, appium_driver):
+        # Login to the app
+        appium_driver.find_element_by_accessibility_id("Log In").click()
+        sleep(2)
+        appium_driver.find_element_by_accessibility_id("Email address").send_keys("your_email")
+        appium_driver.find_element_by_accessibility_id("Password").send_keys("your_password")
+        appium_driver.find_element_by_accessibility_id("Log In").click()
+        sleep(5)
+        
+        # Navigate to Friends tab
+        appium_driver.find_element_by_accessibility_id("Friends").click()
+        sleep(2)
+        
+        # Connect with a friend
+        appium_driver.find_element_by_accessibility_id("Add Friends").click()
+        sleep(2)
+        appium_driver.find_element_by_accessibility_id("Email").send_keys("friend_email")
+        appium_driver.find_element_by_accessibility_id("Send").click()
+        sleep(2)
+        
+        # Verify friend request sent
+        friend_request_sent = appium_driver.find_element_by_accessibility_id("Friend request sent").is_displayed()
+        assert friend_request_sent == True, "Failed to send friend request"
