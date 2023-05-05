@@ -1,0 +1,46 @@
+#Check workout plans and exercises
+
+import pytest
+from appium import webdriver
+from time import sleep
+
+# Appium server URL and desired capabilities
+SERVER_URL = 'http://localhost:4723/wd/hub'
+DESIRED_CAPS = {
+    'platformName': 'iOS',
+    'platformVersion': '16.2',
+    'deviceName': 'iPhone 12',
+    'app': '/path/to/your/app',
+    'automationName': 'XCUITest'
+}
+
+class TestExerciseLibrary:
+
+    def setup_class(self):
+        # Set up Appium session
+        self.driver = webdriver.Remote(SERVER_URL, DESIRED_CAPS)
+
+    def teardown_class(self):
+        # Quit Appium session
+        self.driver.quit()
+
+    def test_access_exercise_library(self):
+        # Navigate to exercise library screen
+        sleep(5)  # wait for app to load
+        exercise_btn = self.driver.find_element_by_accessibility_id('Exercise Library')
+        exercise_btn.click()
+        sleep(2)  # wait for screen to load
+
+        # Check if exercise library is displayed
+        assert self.driver.find_element_by_accessibility_id('Exercise Library').is_displayed()
+
+    def test_access_workout_plan(self):
+        # Navigate to workout plan screen
+        sleep(5)  # wait for app to load
+        workout_btn = self.driver.find_element_by_accessibility_id('Workout Plans')
+        workout_btn.click()
+        sleep(2)  # wait for screen to load
+
+        # Check if workout plan is displayed
+        assert self.driver.find_element_by_accessibility_id('Workout Plans').is_displayed()
+
